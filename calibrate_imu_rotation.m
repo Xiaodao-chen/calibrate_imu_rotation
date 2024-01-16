@@ -34,9 +34,6 @@ gravity = [0,0, 9.87];
 initialGuess = eye(3);
 % calibratedParameters =zeros(3,3);
 
-
-
-
 % Perform the optimization
 % Options for lsqnonlin
 options = optimoptions('lsqnonlin', 'TolFun', 1e-6);
