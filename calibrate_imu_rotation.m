@@ -41,15 +41,21 @@ options = optimoptions('lsqnonlin', 'Algorithm', 'levenberg-marquardt');
 options = optimoptions('lsqnonlin', 'StepTolerance', 1e-10);
 
 
-optimize_param = lsqnonlin(@(calibrationParameters)costfunction(calibrationParameters,quat,acc,gravity,2000),initialGuess,[],[],options);
-disp("optimize_param: ");
-disp( optimize_param);
+% optimize_param = lsqnonlin(@(calibrationParameters)costfunction(calibrationParameters,quat,acc,gravity,2000),initialGuess,[],[],options);
+optimize_param= [
+       1.0005 ,  -0.0112   -0.0341;
+    0.0131    ,1.0005 ,  -0.0219;
+    0.0360    ,0.0238,    1.0005];
 
 % quat2rotm(quat(1))*acc(1,:)';
 beforecost =  totalcostfunction(initialGuess,quat,acc,gravity,num);
 disp(beforecost);
 costtotal  =  totalcostfunction(optimize_param,quat,acc,gravity,num);
+
+disp("total cost");
+
 disp(costtotal);
+
 
 
 function cost = costfunction(calibrationParameters,quat,acc,gravity,num)
